@@ -1,0 +1,46 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%labels
+    Author Awonke
+    Version 0.1
+
+%help
+    Singularity container for running Trimmomatic to trim FASTQ files.
+
+%post
+    # Install Java and utilities
+    apt-get update && apt-get install -y --no-install-recommends \
+        default-jre \
+        curl \
+        wget \
+        unzip \
+        ca-certificates \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Download Trimmomatic using curl (more reliable than wget for GitHub)
+    curl -L -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" \
+         -H "Accept: application/octet-stream" \
+         --retry 5 --retry-delay 5 --max-time 300 \
+         https://github.com/usadellab/Trimmomatic/releases/download/v0.39/Trimmomatic-0.39.zip \
+         -o /tmp/trimmomatic.zip
+
+    if [ ! -s /tmp/trimmomatic.zip ]; then
+        echo "ERROR: Failed to download Trimmomatic" >&2
+        exit 1
+    fi
+
+    # Extract it
+    unzip /tmp/trimmomatic.zip -d /opt/
+
+    # Create a simple command link
+    ln -s /opt/Trimmomatic-0.39/trimmomatic-0.39.jar /usr/local/bin/trimmomatic.jar
+
+    # Clean up
+    rm /tmp/trimmomatic.zip
+
+%environment
+    export PATH=/usr/local/bin:$PATH
+
+%runscript
+    exec java -jar /usr/local/bin/trimmomatic.jar "$@"

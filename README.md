@@ -4,10 +4,10 @@ This repository contains a reproducible workflow for the whoe genome sequence(WG
 
 ## CONTENTS
 -main.nf - Nextflow pipeline script
--nextflow.configm - Configurationnfile for Nextflow
+-nextflow.config - Configuration file for Nextflow
 -trimmomatic.def - Singularity definiton for Trimmomatic
 -variants.db - SQLite database containg variant information
--README.md - This file
+-'README.md' - This file
 ## Container
 The trimmomatic container was built using singularity definition file 'trimmomatic.def' .
 To build the container:

@@ -25,8 +25,8 @@ singularity build --fakeroot trimmomatic.sif trimmomatic.def
 ## Visualisation
 To validate the pipeline results, the final alignments (BAM) and called variants (VCF) were loaded into the Integrative Genomics Viewer (IGV).
 
-IGV Screenshot:
-Figure 1: Visual inspection of read mapping and SNP density across the reference genome.
+IGV_VISUALISATION.png:
+Figure 1: IGV snapshot showing a homozygous T→C point mutation at chr19:60,849. The blue bars in the coverage track and the alignment mismatch highlight the variant relative to the hg19 reference genome.
 
 ## Usage
 Run the workflow using Nextflow with the provided configuration and reference files.

@@ -22,6 +22,12 @@ singularity build --fakeroot trimmomatic.sif trimmomatic.def
 4. **Sorting**: SAM files are converted to BAM and sorted with SAMTOOLS.
 5. **Variant Caling**: Variants are called using BCFTOOLS  and sorted in ' variants.vcf'
 
+## Visualisation
+To validate the pipeline results, the final alignments (BAM) and called variants (VCF) were loaded into the Integrative Genomics Viewer (IGV).
+
+IGV Screenshot:
+Figure 1: Visual inspection of read mapping and SNP density across the reference genome.
+
 ## Usage
 Run the workflow using Nextflow with the provided configuration and reference files.
 
